@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="../grid.css" rel="stylesheet">
+
+  <title>{{title}}</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="clear col-8">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="clear col-4 right">
+            <h1><a href="../index.html"><i class="fa fa-home"></i></a></h1>
+        </div>
+        <div class="clear col-12">
+            <p>{{description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        {% for i in range(1, page_count + 1) %}
+        <div class="col-2 col-xl-1 centre{{' cell-selected' if i == page else ''}}">
+            <a href="{{'index.html' if i == 1 else 'movies-' + i|string + '.html'}}">Page {{i}}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row sticky-top">
+        <div class="colhead col-2 col-xl-1 centre">Rank</div>
+        <div class="col-8 col-xl-2 colhead" >Name</div>
+        <div class="col-2 col-xl-1 centre">Score</div>
+        <div class="col-2 col-xl-1 centre">Class</div>
+        <div class="col-10 col-xl-3">Cast</div>
+        <div class="col-3 col-xl-1 centre">Violence</div>
+        <div class="col-3 col-xl-1 centre">Language</div>
+        <div class="col-3 col-xl-1 centre">Drugs</div>
+        <div class="col-3 col-xl-1 centre">Horror</div>
+    </div>
+{% for item in items %}
+<div class="row">
+    <div class="col-2 col-xl-1 centre">{{loop.index + rank}}</div>
+    <div class="col-8 col-xl-2"><a href="https://imdb.com/title/{{item.id}}" target="_blank">{{item.name}}
+        {% if item.year is not none %}
+            ({{item.year}})
+        {% endif %}
+    </a></div>
+    <div class="col-2 col-xl-1 centre">{{'%0.1f' % item.score|float}}</div>
+    <div class="col-2 col-xl-1 centre">{% if item.rating_au is not none %}
+    {{item.rating_au}}
+    {% else %}
+    {{item.rating}}
+    {% endif %}</div>
+    <div class="col-10 col-xl-3">{{item.cast}}</div>
+    <div class="col-3 col-xl-1 centre {{item.advisory_violence if item.advisory_violence != '' else 'blank'}}">{{item.advisory_violence}}</div>
+    <div class="col-3 col-xl-1 centre {{item.advisory_profanity if item.advisory_profanity != '' else 'blank'}}">{{item.advisory_profanity}}</div>
+    <div class="col-3 col-xl-1 centre {{item.advisory_alcohol if item.advisory_alcohol != '' else 'blank'}}">{{item.advisory_alcohol}}</div>
+    <div class="col-3 col-xl-1 centre {{item.advisory_frightening if item.advisory_frightening != '' else 'blank'}}">{{item.advisory_frightening}}</div>
+    <div class="col-12">{{item.description}}</div>
+</div>
+{% endfor %}
+</div>
+</body>
+</html>
