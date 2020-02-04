@@ -9,7 +9,7 @@ h4 {
   margin-bottom: 0;
 }
 
-[class*="col-"] {
+[class*="col"] {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #eee;
@@ -38,8 +38,6 @@ hr {
 }
 .Moderate {
   background-color: #ec5;
-  padding-left: 5px;
-  padding-right: 5px
 }
 .Severe {
   background-color: #e75
@@ -49,7 +47,9 @@ hr {
   background-color: rgba(170, 180, 250, .3);
 }
 .centre {
-  text-align: center
+  text-align: center;
+  padding-left: 1px;
+  padding-right: 1px
 }
 .right {
   text-align: right

@@ -42,40 +42,49 @@
         {% endfor %}
     </div>
     <div class="row sticky-top">
-        <div class="colhead col-2 col-xl-1 centre">Rank</div>
+        <div class="colhead col-2 col-xl centre">Rank</div>
         <div class="col-8 col-xl-2 colhead" >Name</div>
-        <div class="col-2 col-xl-1 centre">Score</div>
-        <div class="col-2 col-xl-1 centre">Class</div>
+        <div class="col-2 col-xl centre">Score</div>
+        <div class="col-2 col-xl centre">Class</div>
         <div class="col-10 col-xl-3">Cast</div>
-        <div class="col-3 col-xl-1 centre">Violence</div>
-        <div class="col-3 col-xl-1 centre">Language</div>
-        <div class="col-3 col-xl-1 centre">Drugs</div>
-        <div class="col-3 col-xl-1 centre">Horror</div>
+        <div class="col centre">Violence</div>
+        <div class="col centre">Language</div>
+        <div class="col centre">Drugs</div>
+        <div class="col centre">Horror</div>
+        <div class="col centre">Nudity</div>
     </div>
 {% for item in items %}
 <div class="row">
-    <div class="col-2 col-xl-1 centre">{{loop.index + rank}}</div>
+    <div class="col-2 col-xl centre">{{loop.index + rank}}</div>
     <div class="col-8 col-xl-2"><a href="https://imdb.com/title/{{item.id}}" target="_blank">{{item.name}}
         {% if item.year is not none %}
             ({{item.year}})
         {% endif %}
     </a></div>
-    <div class="col-2 col-xl-1 centre">{{'%0.1f' % item.score|float}}</div>
-    <div class="col-2 col-xl-1 centre">{% if item.rating_au is not none %}
+    <div class="col-2 col-xl centre">{{'%0.1f' % item.score|float}}</div>
+    <div class="col-2 col-xl centre">{% if item.rating_au is not none %}
     {{item.rating_au}}
     {% else %}
     {{item.rating}}
     {% endif %}</div>
     <div class="col-10 col-xl-3">{{item.cast}}</div>
-    <div class="col-3 col-xl-1 centre {{item.advisory_violence if item.advisory_violence != '' else 'blank'}}">{{item.advisory_violence}}</div>
-    <div class="col-3 col-xl-1 centre {{item.advisory_profanity if item.advisory_profanity != '' else 'blank'}}">{{item.advisory_profanity}}</div>
-    <div class="col-3 col-xl-1 centre {{item.advisory_alcohol if item.advisory_alcohol != '' else 'blank'}}">{{item.advisory_alcohol}}</div>
-    <div class="col-3 col-xl-1 centre {{item.advisory_frightening if item.advisory_frightening != '' else 'blank'}}">{{item.advisory_frightening}}</div>
+    <div class="col centre {{item.advisory_violence if item.advisory_violence != '' else 'blank'}}">{{item.advisory_violence}}</div>
+    <div class="col centre {{item.advisory_profanity if item.advisory_profanity != '' else 'blank'}}">{{item.advisory_profanity}}</div>
+    <div class="col centre {{item.advisory_alcohol if item.advisory_alcohol != '' else 'blank'}}">{{item.advisory_alcohol}}</div>
+    <div class="col centre {{item.advisory_frightening if item.advisory_frightening != '' else 'blank'}}">{{item.advisory_frightening}}</div>
+    <div class="col centre {{item.advisory_nudity if item.advisory_nudity != '' else 'blank'}}">{{item.advisory_nudity}}</div>
     <div class="col-12">{{item.description}}</div>
 </div>
 {% endfor %}
 <div class="row">
-    <div class="col-12">Data sourced from IMDB. For more details on these movies, click the movie title links to go directly to IMDB.</div>
+    {% for i in range(1, page_count + 1) %}
+    <div class="col-2 col-xl-1 centre{{' cell-selected' if i == page else ''}}">
+        <a href="{{'index.html' if i == 1 else 'movies-' + i|string + '.html'}}">Page {{i}}</a>
+    </div>
+    {% endfor %}
+</div>
+<div class="row">
+    <div class="col-12 clear">Data sourced from IMDB. For more details on these movies, click the movie title links to go directly to IMDB.</div>
 </div>
 </div>
 </body>
