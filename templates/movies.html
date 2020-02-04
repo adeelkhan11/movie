@@ -9,7 +9,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="../grid.css" rel="stylesheet">
 
-  <title>{{title}}</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1051109-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1051109-3');
+    </script>
+
+    <title>{{title}}</title>
 </head>
 <body>
 <div class="container">
@@ -64,6 +74,9 @@
     <div class="col-12">{{item.description}}</div>
 </div>
 {% endfor %}
+<div class="row">
+    <div class="col-12">Data sourced from IMDB. For more details on these movies, click the movie title links to go directly to IMDB.</div>
+</div>
 </div>
 </body>
 </html>
