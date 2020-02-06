@@ -120,12 +120,19 @@ def scrape_movie_details(movie, session, counter):
         print(f'{counter:4}. {movie.name}: Parental advisory not available.')
 
     if movie.country not in ('China', 'Japan', 'Soviet Union', 'South Africa', 'France',
-                             'Iran', 'Bulgaria', 'Spain', 'Belgium', 'Denmark', 'Germany',
-                             'Russia', 'Italy', 'Netherlands', 'Sweden', 'Mexico', 'Poland', 'Turkey',
+                             'Bulgaria', 'Spain', 'Belgium', 'Denmark', 'Germany',
+                             'Russia', 'Italy', 'Netherlands', 'Sweden', 'Mexico', 'Poland',
                              'Argentina', 'South Korea') \
             and movie.advisory_nudity != 'Severe' \
             and (movie.genre is None or 'Horror' not in movie.genre) \
-            and (movie.language is None or 'English' in movie.language or 'Urdu' in movie.language or 'Hindi' in movie.language):
+            and (movie.language is None or
+                'English' in movie.language or
+                'Urdu' in movie.language or
+                'Hindi' in movie.language or
+                'Arabic' in movie.language or
+                'Turkish' in movie.language or
+                'Malay' in movie.language or
+                'Indonesian' in movie.language):
         for t in soup.select('div#title_recs div div div div div.rec_item a'):
             m = re.match('/title/([^/]+)/', t.attrs['href'])
             if m is not None:
