@@ -10,13 +10,13 @@
     <link href="../grid.css" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1051109-3"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157815234-1"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-1051109-3');
+    gtag('config', 'UA-157815234-1');
     </script>
 
     <title>{{title}}</title>
@@ -82,6 +82,11 @@
         <a href="{{'index.html' if i == 1 else 'movies-' + i|string + '.html'}}">Page {{i}}</a>
     </div>
     {% endfor %}
+</div>
+<div class="row">
+    <div class="col-12 clear centre">
+        <h1><a href="../index.html"><i class="fa fa-home"></i></a></h1>
+    </div>
 </div>
 <div class="row">
     <div class="col-12 clear">Data sourced from IMDB. For more details on these movies, click the movie title links to go directly to IMDB.</div>
