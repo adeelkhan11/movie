@@ -38,6 +38,10 @@ def minutes_from_movie_time(time_text):
 
 def scrape_movie_details(movie, session, counter):
     page = requests.get(f'https://www.imdb.com/title/{movie.id}/')
+    if page.status_code == 404:
+        movie.name = 'Error: Page not found'
+        print(f'Warning: {movie.id} not found.')
+        return
     soup = BeautifulSoup(page.content, 'html.parser')
     data = json.loads(soup.find('script', type='application/ld+json').text)
 
@@ -121,7 +125,7 @@ def scrape_movie_details(movie, session, counter):
                              'Argentina', 'South Korea') \
             and movie.advisory_nudity != 'Severe' \
             and (movie.genre is None or 'Horror' not in movie.genre) \
-            and (movie.language is None or 'English' in movie.language or 'Urdu' in movie.language):
+            and (movie.language is None or 'English' in movie.language or 'Urdu' in movie.language or 'Hindi' in movie.language):
         for t in soup.select('div#title_recs div div div div div.rec_item a'):
             m = re.match('/title/([^/]+)/', t.attrs['href'])
             if m is not None:
