@@ -56,7 +56,8 @@ movie_lists = [{'name': 'Family Movies',
                     filter(Movie.duration >= 60).
                     filter(Movie.language.like('English%')).
                     filter(Movie.gross >= 7000000).
-                    order_by(Movie.score.desc()),
+                    order_by(Movie.score.desc()).
+                    order_by(Movie.gross.desc()),
                 'description': 'Language and Horror is limited to Mild and Nudity is limited to None.'},
                {'name': 'Movies for Grown Ups',
                 'folder': 'grown-ups',
@@ -68,7 +69,8 @@ movie_lists = [{'name': 'Family Movies',
                     filter(Movie.duration >= 60).
                     filter(Movie.language.like('English%')).
                     filter(Movie.gross >= 7000000).
-                    order_by(Movie.score.desc()),
+                    order_by(Movie.score.desc()).
+                    order_by(Movie.gross.desc()),
                 'description': 'Language and Horror is limited to Moderate and Nudity is limited to Mild.'},
                {'name': 'Highest Grossing Movies for Grown Ups',
                 'folder': 'grown-ups-by-earnings',
@@ -156,7 +158,9 @@ for l in movie_lists[:1]:
 copyfile('templates/grid.css', f'{OUTPUT_DIR}/grid.css')
 index_template = env.get_template('index.html')
 index_html_content = index_template.render(title='Movie Lists',
-                                           description='Lists of clean movies as rated by IMDB\'s Parental Guides.',
+                                           description='<p>Lists of clean movies as rated by IMDB\'s Parental Guides.</p><p>'
+                                           'These are top rated movies, for people who are concerned about what they or their children watch.</p>'
+                                           '<p>The parental guide ratings are clearly visible and colour coded to allow easy browsing.</p>',
                                            items=movie_lists)
 file_name = 'index.html'
 with open(f'{OUTPUT_DIR}/{file_name}', 'w') as file:
